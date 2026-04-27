@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إلى أجمل صدفة ❤️</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+</head>
+
+<body>
+
+    <canvas id="particlesCanvas"></canvas>
+
+
+    <div id="heartsContainer"></div>
+
+
+    <div class="gift-scene" id="giftScene">
+        <div class="gift-container" id="giftBox">
+            <div class="gift-lid">
+                <div class="ribbon-vertical"></div>
+                <div class="ribbon-horizontal"></div>
+                <div class="ribbon-bow"></div>
+            </div>
+            <div class="gift-body">
+                <div class="ribbon-vertical"></div>
+                <div class="ribbon-horizontal"></div>
+            </div>
+            <div class="gift-glow"></div>
+        </div>
+        <p class="gift-text">عيدية علي 🎁</p>
+    </div>
+
+
+    <div class="card-container" id="card" style="opacity: 0; pointer-events: none; transform: scale(0.8);">
+        <div class="card-inner">
+            <div class="card-front">
+                <div class="glow-circle"></div>
+                <p>لانك مميزة اخترتلك عيدية بتليق بتميزك ❤️🎁</p>
+                <h1> كل عام وانتي بالف خير ✨</h1>
+                <p> العمر كلو عقبال ال 100 سنة...❤️</p>
+                <br> <br>
+                <button id="openBtn">مفكرة خلصت ؟  🎁</button>
+
+            </div>
+
+            <div class="card-inside" id="insideContent">
+                <div class="floating-heart">❤️</div>
+                <h2 class="romantic-title">كل عام وأنتي نبض القلب</h2>
+                <p id="typewriter"></p>
+                <p class="ps-message hidden" id="psMessage">
+                    💌 P.S. أنا بحبك أكتر من كلمة "بحبك"...<br>
+                    وأكتر من كل النجوم يلي بتلمع بالسما... <br>
+                   maded with ❤️ By Ali
+                
+                </p>
+                <div class="music-control">
+                    <audio id="birthdayAudio" loop>
+                        <source src="hbd.webm" type="audio/webm">
+                    </audio>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
