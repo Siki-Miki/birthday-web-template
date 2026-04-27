@@ -13,11 +13,6 @@ body {
 }
 
 
-#particlesCanvas {
-    display: none;
-}
-
-
 #heartsContainer {
     position: fixed;
     top: 0;
@@ -36,8 +31,8 @@ body {
 }
 
 @keyframes heartFloat {
-    0% { transform: translateY(0) scale(1); opacity: 1; }
-    100% { transform: translateY(-100px) scale(1.5); opacity: 0; }
+    0% { transform: translateY(0) translateX(0) scale(1); opacity: 1; }
+    100% { transform: translateY(-100px) translateX(var(--tx, 0)) scale(1.5); opacity: 0; }
 }
 
 
@@ -68,10 +63,24 @@ body {
     height: 150px;
     cursor: pointer;
     transition: transform 0.3s ease;
+    animation: giftEntrance 1s ease-out;
+}
+
+@keyframes giftEntrance {
+    0% { transform: scale(0) rotate(-20deg); opacity: 0; }
+    60% { transform: scale(1.1) rotate(5deg); opacity: 1; }
+    100% { transform: scale(1) rotate(0deg); opacity: 1; }
 }
 
 .gift-container:hover {
-    transform: scale(1.05);
+    transform: scale(1.08);
+    animation: giftShake 0.5s ease-in-out;
+}
+
+@keyframes giftShake {
+    0%, 100% { transform: scale(1.08) rotate(0deg); }
+    25% { transform: scale(1.08) rotate(-5deg); }
+    75% { transform: scale(1.08) rotate(5deg); }
 }
 
 .gift-body {
@@ -331,21 +340,7 @@ button:hover {
 }
 
 
-.sparkle {
-    position: absolute;
-    width: 4px;
-    height: 4px;
-    background: white;
-    border-radius: 50%;
-    animation: sparkleAnim 2s linear forwards;
-}
 
-@keyframes sparkleAnim {
-    0% { transform: translate(0, 0) scale(0); opacity: 1; }
-    100% { transform: translate(var(--tx), var(--ty)) scale(1); opacity: 0; }
-}
-
-/* Responsive */
 @media (max-width: 480px) {
     .card-container { width: 95%; min-height: 400px; }
     .card-inner { height: 400px; }
@@ -357,4 +352,84 @@ button:hover {
     .gift-lid .ribbon-horizontal { width: 130px; }
 }
 
+#password-screen {
+    position: fixed;
+    top: 0; left: 0; 
+    width: 100%; height: 100%;
 
+    background: linear-gradient(135deg, #0f0c29, #302b63, #24243e); 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.lock-box {
+    background: rgba(255, 255, 255, 0.05); 
+    backdrop-filter: blur(15px); 
+    padding: 40px;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+    text-align: center;
+    color: white;
+    width: 320px;
+}
+
+.lock-box h2 {
+    margin-bottom: 25px;
+    font-weight: 300;
+    letter-spacing: 1px;
+}
+
+.lock-box input {
+    padding: 12px;
+    width: 100%;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    border: none;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    text-align: center;
+    font-size: 16px;
+    transition: 0.3s;
+}
+
+.lock-box input:focus {
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 10px rgba(255,255,255,0.1);
+    outline: none;
+}
+
+.lock-box button {
+    padding: 12px 35px;
+    background: linear-gradient(45deg, #ff416c, #ff4b2b);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: 0.3s;
+    box-shadow: 0 4px 15px rgba(255, 75, 43, 0.3);
+}
+
+.lock-box button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(255, 75, 43, 0.5);
+}
+
+#error-msg {
+    font-size: 14px;
+    margin-top: 15px;
+    font-weight: bold;
+    animation: shake 0.5s; 
+}
+
+
+@keyframes shake {
+    0%, 100% {transform: translateX(0);}
+    25% {transform: translateX(-5px);}
+    75% {transform: translateX(5px);}
+}
