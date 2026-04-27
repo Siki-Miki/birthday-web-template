@@ -27,9 +27,9 @@ function createHeart(x, y) {
     heart.style.left = x + 'px';
     heart.style.top = y + 'px';
     heart.style.fontSize = (Math.random() * 10 + 10) + 'px';
-    heart.style.setProperty('--tx', ((Math.random() - 0.5) * 50) + 'px');
+    heart.style.setProperty('--tx', ((Math.random() - 0.5) * 100) + 'px');
     heartsContainer.appendChild(heart);
-    setTimeout(() => heart.remove(), 1200);
+    setTimeout(() => heart.remove(), 1500);
 }
 
 giftBox.addEventListener('click', function() {
@@ -63,12 +63,13 @@ openBtn.addEventListener('click', function() {
 
 const message = "كل عام وأنتي مصدر النور بحياتي. عملت هالموقع خصوصاً إلك لحتى تضل ذكرى محفورة باسمك للأبد... بحبك ❤️";
 let i = 0;
+let typewriterTimeout;
 
 function typeWriter() {
     if (i < message.length) {
         typewriterElement.innerHTML += message.charAt(i);
         i++;
-        setTimeout(typeWriter, 70);
+        typewriterTimeout = setTimeout(typeWriter, 70);
     } else {
         setTimeout(() => {
             psMessage.classList.remove('hidden');
@@ -77,50 +78,72 @@ function typeWriter() {
 }
 
 function startTypewriter() {
+    clearTimeout(typewriterTimeout);
     i = 0;
     typewriterElement.innerHTML = '';
+    psMessage.classList.add('hidden');
     typeWriter();
 }
 
 
 function launchConfetti() {
-    confetti({
-        particleCount: 100,
-        spread: 70,
-        origin: { y: 0.6 },
-        colors: ['#ff007f', '#ff758c', '#ffffff', '#ffd700']
-    });
-}
-
-function launchConfetti() {
-    const duration = 3000; 
+    const duration = 3000;
     const end = Date.now() + duration;
-
-
     const colors = ['#ff007f', '#ff758c', '#ffffff', '#ffd700'];
 
     (function frame() {
-
         confetti({
-            particleCount: 2,
+            particleCount: 3,
             angle: 60,
             spread: 55,
             origin: { x: 0 },
             colors: colors
         });
-        
-   
+
         confetti({
-            particleCount: 2,
+            particleCount: 3,
             angle: 120,
             spread: 55,
             origin: { x: 1 },
             colors: colors
         });
 
-
         if (Date.now() < end) {
             requestAnimationFrame(frame);
         }
     }());
 }
+
+
+function checkPassword() {
+    const inputField = document.getElementById("password-input");
+    const password = inputField.value;
+    const correctPassword = "faisal";
+
+    if (password === correctPassword) {
+        document.getElementById("password-screen").style.display = "none";
+        document.getElementById("main-content").style.display = "block";
+        const bgMusic = document.getElementById('bg-music');
+        if (bgMusic) {
+            bgMusic.volume = 0.3;
+            bgMusic.play().catch(() => console.log("المتصفح حظر التشغيل التلقائي"));
+        }
+    } else {
+        inputField.value = "";
+        inputField.focus();
+        inputField.style.animation = 'none';
+        inputField.offsetHeight;
+        inputField.style.animation = 'shake 0.5s';
+    }
+}
+
+
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') {
+   
+        const lockScreen = document.getElementById("password-screen");
+        if (lockScreen.style.display !== "none") {
+            checkPassword();
+        }
+    }
+});
