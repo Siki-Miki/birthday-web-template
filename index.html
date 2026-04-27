@@ -11,8 +11,19 @@
 </head>
 
 <body>
+    <div id="password-screen">
+        <div class="lock-box">
+            <h2>بس لإلك❤️🔒</h2>
+            <input type="password" id="password-input" placeholder="أدخلي كلمة السر...">
+            <button onclick="checkPassword()">دخول</button>
+        </div>
+    </div>
 
-    <canvas id="particlesCanvas"></canvas>
+    <div id="main-content" style="display: none;">
+        <audio id="bg-music" preload="auto">
+            <source src="hbd.mp3" type="audio/mpeg">
+        </audio>
+    </div>
 
 
     <div id="heartsContainer"></div>
@@ -43,7 +54,7 @@
                 <h1> كل عام وانتي بالف خير ✨</h1>
                 <p> العمر كلو عقبال ال 100 سنة...❤️</p>
                 <br> <br>
-                <button id="openBtn">مفكرة خلصت ؟  🎁</button>
+                <button id="openBtn">مفكرة خلصت ؟ 🎁</button>
 
             </div>
 
@@ -54,12 +65,12 @@
                 <p class="ps-message hidden" id="psMessage">
                     💌 P.S. أنا بحبك أكتر من كلمة "بحبك"...<br>
                     وأكتر من كل النجوم يلي بتلمع بالسما... <br>
-                   maded with ❤️ By Ali
-                
+                    maded with ❤️ By Ali
+
                 </p>
                 <div class="music-control">
-                  <audio id="birthdayAudio" loop>
-                        <source src="hbd.mp3" type="audio/webm">
+                    <audio id="birthdayAudio" loop preload="auto">
+                        <source src="hbd.mp3" type="audio/mpeg">
                     </audio>
                 </div>
             </div>
