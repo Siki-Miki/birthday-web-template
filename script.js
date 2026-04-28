@@ -34,7 +34,7 @@ function createHeart(x, y) {
 
 giftBox.addEventListener('click', function() {
 
-    if (audio) {
+    if (audio && audio.paused) {
         audio.play().catch(() => console.log("المتصفح انتظر التفاعل"));
     }
     
@@ -61,7 +61,7 @@ openBtn.addEventListener('click', function() {
 });
 
 
-const message = "كل عام وأنتي مصدر النور بحياتي. عملت هالموقع خصوصاً إلك لحتى تضل ذكرى محفورة باسمك للأبد... بحبك ❤️";
+const message = "كل عام وأنتي مصدر النور بحياتي. عملت هالموقع خصوصاً إلك لحتى تضل ذكرى محفورة باسمك فيصلية للأبد... بحبك ❤️";
 let i = 0;
 let typewriterTimeout;
 
@@ -118,15 +118,16 @@ function launchConfetti() {
 function checkPassword() {
     const inputField = document.getElementById("password-input");
     const password = inputField.value;
-    const correctPassword = "faisal";
+    const correctPassword = "ali";
 
     if (password === correctPassword) {
         document.getElementById("password-screen").style.display = "none";
         document.getElementById("main-content").style.display = "block";
-        const bgMusic = document.getElementById('bg-music');
-        if (bgMusic) {
-            bgMusic.volume = 0.3;
-            bgMusic.play().catch(() => console.log("المتصفح حظر التشغيل التلقائي"));
+        if (audio) {
+            audio.volume = 0.3;
+            if (audio.paused) {
+                audio.play().catch(() => console.log("المتصفح حظر التشغيل التلقائي"));
+            }
         }
     } else {
         inputField.value = "";
